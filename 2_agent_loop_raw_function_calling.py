@@ -10,7 +10,7 @@ MODEL = "qwen3:8b"
 
 
 
-# This is an agentic loop with only Ollama and without langchain abstraction.
+# This is an agentic loop with only Ollama and raw function call, without langchain abstraction.
 # If we decide to use Anthropic/Claude/Cursor/Any other LLM the implementation will be different, so the change will cost time and effort.
 # So all of this is abstracted with Langchain.
 
