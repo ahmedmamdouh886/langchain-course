@@ -3,16 +3,25 @@ name = "langchain-course"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
-    "black>=25.1.0",
-    "isort>=6.0.1",
-    "langchain>=0.3.27",
-    "langchain-classic>=1.0.0",
-    "langchain-openai>=0.3.31",
-    "langchain-pinecone>=0.2.11",
+    "black>=25.9.0",
+    "isort>=7.0.0",
+    "langchain>=1.0.4",
+    "langchain-classic>=1.0.8",
+    "langchain-community>=0.4.2",
+    "langchain-ollama>=0.3.10",
+    "langchain-openai>=1.0.2",
+    "langchain-pinecone>=0.2.13",
+    "langchain-tavily>=0.2.13",
     "langchain-unstructured>=1.0.1",
     "langchainhub>=0.1.21",
-    "python-dotenv>=1.1.1",
-    "unstructured>=0.23.1",
+    "python-dotenv>=1.2.1",
+    "tavily-python>=0.7.12",
+    "unstructured>=0.18.32",
+    "onnxruntime < 1.24.0",
+    "chromadb>=1.5.9",
+    "langchain-chroma>=1.1.0",
+    "python-magic>=0.4.27",
+    "libmagic>=1.0",
 ]

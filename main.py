@@ -6,21 +6,28 @@ from langchain_core.messages import HumanMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_pinecone import PineconeVectorStore
+# from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+# from langchain_pinecone import PineconeVectorStore
+
+from langchain_chroma import Chroma
+from langchain_core.documents import Document
+from langchain_ollama import ChatOllama, OllamaEmbeddings
 
 load_dotenv()
 
 print("Initializing components...")
 
-embeddings = OpenAIEmbeddings()
-llm = ChatOpenAI()
+embeddings = OllamaEmbeddings(model="qwen3-embedding:0.6b")
+llm = ChatOllama(temperature=0, model="qwen3:8b")
 
-vectorstore = PineconeVectorStore(
-    index_name=os.environ["INDEX_NAME"], embedding=embeddings
+vectorstore = Chroma(
+    embedding_function=embeddings,
+    persist_directory="./chroma_db"
 )
 
-retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+retriever = vectorstore.as_retriever(
+    search_kwargs={"k": 3} # k: 3 means return the most "top k" relevant  documents.
+)
 
 prompt_template = ChatPromptTemplate.from_template(
     """Answer the question based only on the following context:
@@ -32,7 +39,7 @@ Question: {question}
 Provide a detailed answer:"""
 )
 
-
+# Format langchain document. convert all documents content to string to add it to {context} prompt template.
 def format_docs(docs):
     """Format retrieved documents into a single string."""
     return "\n\n".join(doc.page_content for doc in docs)
@@ -95,6 +102,7 @@ def create_retrieval_chain_with_lcel():
         | llm
         | StrOutputParser()
     )
+
     return retrieval_chain
 
 
