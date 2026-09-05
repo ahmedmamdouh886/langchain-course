@@ -143,11 +143,6 @@ async def main():
     log_info(f"   • Chunks created: {len(splitted_docs)}")
 
 
-
-
-
-
-
 if __name__ == "__main__":
     asyncio.run(main())
 
