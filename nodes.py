@@ -21,7 +21,7 @@ SYSYEM_MESSAGE="""
 You are a helpful assistant that can use tools to answer questions.
 """
 
-# This is the agent_reason node depicted in the infrastructure image that will receive our message and decide wether to answer or Act(call a tool).
+# This is the agent_reason node depicted in the flow image that will receive our message and decide wether to answer or Act(call a tool).
 def run_agent_reasoning(state: MessagesState) -> MessagesState:
     """
     Run the agent reasoning node.
@@ -32,5 +32,5 @@ def run_agent_reasoning(state: MessagesState) -> MessagesState:
 
     return {"messages": [response]} # So after the llm is invoked we need to update our state, that's why we appended the response to the messages key and returned it.
 
-# We define the tool node with the relevant tools, this is depicted as Act node in the infrastructure image.
+# We define the tool node with the relevant tools, this is depicted as Act node in the flow image.
 tool_node = ToolNode(tools)
