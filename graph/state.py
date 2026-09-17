@@ -16,10 +16,10 @@ class GraphState(TypedDict):
     # whether to determine if the documents retrieved are relevant
     # to the question or even to what's to search online.
     question: str
-    # And of course we want to have the generation field, which is going to be the generated answer.
+    # And of course we want to have the generation field, which is going to be the generated answer by the generation node in the arch.png
     generation: str
     # We want to have a Boolean flag that will tell us whether we need to search online for extra results or not.
     web_search: bool
     # We want to save the documents that are going to help us answer this question.
-    # So those are going to be the retrieved documents or the documents that we get back from the search result.
+    # So those are going to be the retrieved documents from the vector store or the documents that we get back from the search result.
     documents: List[str]
