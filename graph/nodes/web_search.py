@@ -21,7 +21,7 @@ def web_search(state: GraphState) -> Dict[str, Any]:
     # Now notice because we execute the web search node only after we grade the documents. So it's after we filter them out.
     # So we're not supposed to have any non-relevant documents.
     # So all of the documents we're going to have in the documents list are going to be relevant for our query.
-    documents = state["documents"]
+    documents = state["documents"] if "documents" in state else None
 
     tavily_results = web_search_tool.invoke({"query": question})["results"]
 

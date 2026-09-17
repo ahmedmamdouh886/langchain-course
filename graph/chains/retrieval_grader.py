@@ -6,8 +6,6 @@ from pydantic import BaseModel, Field
 # from langchain_openai import ChatOpenAI
 from langchain_ollama import ChatOllama
 
-llm = ChatOllama(temperature=0, model="qwen3:8b")
-
 class GradeDocuments(BaseModel):
     """Binary score for relevance check on retrieved documents."""
 
@@ -15,6 +13,7 @@ class GradeDocuments(BaseModel):
         description="Documents are relevant to the question, 'yes' or 'no'"
     )
 
+llm = ChatOllama(temperature=0, model="qwen3:8b")
 
 # Now what is going to do under the hood in the with_structured_output function.
 # The LLM's going to use function calling.
